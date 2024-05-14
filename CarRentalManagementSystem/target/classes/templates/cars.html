@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Car Rental Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="/">Car rental management system</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/cars}">CARS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/bookings}">BOOKINGS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/customers}">CUSTOMERS</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+	<div class ="container">
+		<div class = "row">
+			<h1> List Of Cars </h1>
+		</div>
+		
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href = "@{/cars/new}" class = "btn btn-primary btn-sm mb-3"> Add Car</a>
+			</div>
+		</div>
+		<table class = "table table-striped table-bordered">
+			<thead class = "table-dark">
+				<tr>
+					<th> Plate Number</th>
+					<th> Model </th>
+					<th> Manufactured Year </th>
+					<th> Capacity </th>
+					<th> Price Per Day </th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "car: ${cars}">
+					<td th:text = "${car.plateNumber}"></td>
+					<td th:text = "${car.model}"></td>
+					<td th:text = "${car.manufacturedYear}"></td>
+					<td th:text = "${car.capacity}"></td>
+					<td th:text = "${car.pricePerDay}"></td>
+					<td>
+						<a th:href = "@{/cars/edit/{plateNumber} (plateNumber=${car.plateNumber})}"
+						 class = "btn btn-primary">Update</a>
+						
+						<a th:href = "@{/cars/{plateNumber}(plateNumber=${car.plateNumber})}"
+						 class = "btn btn-danger">Delete</a>
+						 
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+		
+	</div>
+</body>
+</html>
